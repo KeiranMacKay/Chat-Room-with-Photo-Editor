@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Chat Server</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body style="background-color:grey;" onload="load_default()">
+
+<!-- Add your site or application content here -->
+
+<!-- Header -->
+<div class="header">
+    <h1>Chat Server
+        <a href="about.html" class="right">About</a>
+        <a href="index.html" class="right">Home</a>
+    </h1>
+</div>
+
+<!-- Create and Join room button -->
+<div id="room section" class="room">
+    <button id="create_room" class="button">Create and join new room</button>
+    <!-- Join room input -->
+    <div id="room" style=" padding: 20px 0 0 10px;">
+        <input type="text" id="room-code">
+    </div>
+    <!-- join room button -->
+    <button id="btRoom" class="button_2" onclick="enterRoom()">ENTER</button>
+    <!-- List of chat rooms -->
+    <div style=" padding: 10px 0 0 10px;">
+        <p style="font-size: 1.2em;"> list of chat rooms </p>
+        <ul style="list-style-type:none;">
+            <li></li>
+        </ul>
+        <!-- Refresh Button -->
+        <button id="refresh" class="button_4">Refresh</button>
+    </div>
+</div>
+
+<!-- Chat -->
+<div id="chat" class="main">
+    <!-- Chat box -->
+    <textarea title="Chat Log" id="log" readonly class="chat"></textarea>
+    <!-- Chat input -->
+    <input title="Chat Input" id="input" type="text" class="input"/>
+    <!-- Send chat button -->
+    <button id="submit" class="button_3">Send</button>
+</div>
+
+
+
+
+
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
