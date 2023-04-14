@@ -37,6 +37,7 @@
 
 <!-- Create and Join room button -->
 <div id="room section" class="room">
+    <input type="file" id="jpg">
     <button id="create_room" class="button">Create and join new room</button>
     <!-- Join room input -->
     <div id="room" style=" padding: 20px 0 0 10px;">
@@ -60,8 +61,10 @@
     <!-- Chat box -->
     <textarea title="Chat Log" id="log" readonly class="chat"></textarea>
     <!-- <form class="form"> -->
-        <!-- image upload -->
-        <input id="image_upload" class="button_5"> + </input>
+        <!-- image upload
+        THIS THING DOES NOT WORK. I DO NOT KNOW WHY.
+        WE MAY NEED TO QUERYSELECT IT. ~ Sam -->
+        <input type="file",id="image_upload" class="button_5"> + </input>
         <!-- Chat input -->
         <input title="Chat Input" id="input" placeholder="Message chat room" type="text" class="input"/>
         <!-- Send chat button -->

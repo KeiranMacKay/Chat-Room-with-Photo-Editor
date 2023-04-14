@@ -6,10 +6,8 @@ import jakarta.websocket.server.ServerEndpoint;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.nio.ByteBuffer;
+import java.util.*;
 
 @ServerEndpoint(value="/ws/{roomID}") // websocket endpoint
 public class ChatServer {
@@ -38,17 +36,40 @@ public class ChatServer {
             }
         }
     }
-
     @OnMessage
-    public void handleMessage(String comm, Session session) throws IOException, EncodeException {
+    public void handleMessage(String message, Session session) throws IOException, EncodeException {
+        handleJson(message,session);
+    }
+    private void handleJson(String comm, Session session) throws IOException, EncodeException{
+        // working code that handles JSON type messages.
         String userID = session.getId(); // users' ID
         String roomID = roomList.get(userID); // specific room
         JSONObject jsonmsg = new JSONObject(comm); // grab string from message json
         String type = jsonmsg.getString("type");
         String message = jsonmsg.getString("msg");
+        System.out.println(type + " " + message);
         // look for file requests..:
         if(type.equals("file")){
-            session.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Server ): Image submitted.\"}");
+            String stage = jsonmsg.getString("stage");
+            if(stage.equals("begin")){
+                // This triggers at the start of an upload and defines the image size.
+                String[] conv = message.split(":");
+                int imgwidth = Integer.parseInt(conv[0]);
+                int imheight = Integer.parseInt(conv[1]);
+                String name = conv[2];
+                session.getBasicRemote().sendText("{\"type\": \"chat\", \"message\": \"" + imheight + "::" + imgwidth + "\"}");
+            }else{
+                // block that recieves data from upload.
+                // data is recieved in the form <int>*<int>*<int> as a string.
+
+                // so, to get a String[] of stuff we need to cast to ints..:
+                String[] convert = message.split("-");
+                List<Integer> convInt = new ArrayList<Integer>();
+                for(String n : convert){
+                    convInt.add(Integer.parseInt(n.trim()));
+                }
+                // we now have an array of ints that we need to convert into an image file.
+            }
         }
         // look for refresh type messages..:
         else if(type.equals("refresh")){
@@ -64,11 +85,6 @@ public class ChatServer {
                     packer += val + "*";
                 }
                 session.getBasicRemote().sendText("{\"type\": \"roomList\", \"message\":\"" + packer + "" + "\"}");
-                /*
-                String roomListJson = hashMapToJson(roomList);
-                session.getBasicRemote().sendText("{\"type\": \"roomList\", \"message\": \"" + roomListJson + "\"}");
-
-                 */
             }
         }
         // look for chat type messages..:
@@ -94,13 +110,5 @@ public class ChatServer {
                 }
             }
         }
-
     }
-
-    //Turn hashmap into json formatted string
-    public static String hashMapToJson(Map<String, String> map) {
-        JSONObject jObject = new JSONObject(map);
-        return jObject.toString();
-    }
-
 }

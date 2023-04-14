@@ -1,0 +1,2 @@
+Q: What is this file for?
+A: It stores all the JPEGs handled by the server.

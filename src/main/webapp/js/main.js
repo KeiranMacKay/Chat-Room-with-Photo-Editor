@@ -1,15 +1,4 @@
-/*
-    This file contains a lot of functional programming
-    which is what makes the server run.
-    This file implements all the onClick button scripts,
-    aswell as handling client-side server connectivity.
-
- */
-
-// enters the room for a given code (should be a string)
-// if no code given, tries to grab it from the room entry.
-// otherwise, doesn't do anything.
-
+// establish websocket
 let ws = new WebSocket("ws://localhost:8080/WSChatServerDemo-1.0-SNAPSHOT/ws/default");
 function enterRoom(code) {
     if(code == null){
@@ -17,11 +6,11 @@ function enterRoom(code) {
     }
     ws = new WebSocket("ws://localhost:8080/WSChatServerDemo-1.0-SNAPSHOT/ws/" + code);
 
-//let  ws = new WebSocket("ws://localhost:8080/WSChatServerDemo-1.0-SNAPSHOT/ws"+code);
-
     ws.onmessage = function (event) {
         console.log(event.data);
         let message = JSON.parse(event.data);
+
+        // message filtering for types
         if(message.type == 'roomList'){
             let pE = document.querySelector("#roomList");
             let items = pE.querySelectorAll("li,lu");
@@ -35,6 +24,7 @@ function enterRoom(code) {
                 document.querySelector('ul').appendChild(node);
             }
         }
+        // could be an else if
         if(message.type == 'chat'){
             document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
         }
@@ -55,18 +45,6 @@ document.getElementById("input").addEventListener("keyup", function (event) {
     }
 });
 
-/*
-    on buttons:
-    This button works by sending a message to the backend.
-    I've made these messages unique, and they need to be
-    caught in the backend and parsed for meaning.
-    for Kei, I've left you openings in the backend to fill
-    with how exactly you'd like to package the map for Gremmy
-    to serve to the front end. For now, it has a unique type
-    and a more technical message
-        ~ Sam
- */
-
 // handles the 'refresh' button, getting roomList from backend
 const button1 = document.querySelector('#refresh');
 button1.addEventListener('click', () => {
@@ -75,8 +53,6 @@ button1.addEventListener('click', () => {
 });
 
 // handles 'submit' button, sending message to server.
-// this button directly runs a script, but otherwise
-// operates the same way.
 const button2 = document.querySelector('#submit');
 button2.addEventListener('click', () =>{
     const inp = document.getElementById("input");
@@ -86,25 +62,11 @@ button2.addEventListener('click', () =>{
 });
 
 // handles 'Create New Room' button, creating a new random room.
-// button for creating a room.
-// grabs a RoomID from the makeRandomID() function
-// and then opens a websocket using that.
 const button3 = document.querySelector('#create_room');
 button3.addEventListener('click', () =>{
     let id = makeRandomID();
     enterRoom(id);
 });
-
-// handles submitting a file for better user feel.
-/*
-const buttonUp = document.querySelector('#up');
-buttonUp.addEventListener('click', () =>{
-    // grab our input field..:
-    let inp = document.getElementById('jpg');
-    let data = inp.file.item(0).getAsString();
-    console.log(data);
-});
- */
 
 // get the time as a string from the client's computer.
 function timestamp() {
@@ -113,32 +75,39 @@ function timestamp() {
     return d.getHours() + ':' + minutes;
 }
 
-/*
-    File Transfer notes:
-    Following is the interface for uploading any file.
-    Takes a file and turns it into a byte[] array datatype
-    that is then transmitted to the server backend.
-        ~ Sam
-
-    pt.2:
-    this might be easier through use of an input field and a button.
- */
-
-document.getElementById("jpg").addEventListener("change",function(event) {
+document.getElementById("jpg").addEventListener('change',function(event) {
     // get the file and instantiate a reader..:
+    console.log("Uploading File...")
     let file = event.target.files[0];
+    // grab dimensions of image..:
+    const image = new Image();
+    image.src = URL.createObjectURL(this.files[0]);
+    image.onload = function () {
+        // grab width and height
+        let width = this.width;
+        let height = this.height;
+        // id for later...
+        let id = makeRandomID();
+        console.log(width+ ":" + height);
+        // shoot those to the front end aswell as the ID.
+        let request = {"type":"file","msg":width+":"+height+":"+id,"stage":"begin"};
+        ws.send(JSON.stringify(request));
+    };
+
     let reader = new FileReader();
 
     reader.onload = function(){
-        // store the file as a byte array..:
+        // make a blank payload
+        let payload = ""
         let data = new Uint8Array(reader.result);
-
-        // we now construct a message in the format:
-        // type:jpg message:<binary data>
-        let request = {"type":"file","msg":data};
+        for(x in data){
+            // fill up the payload with a bunch of crap because we love java :)
+            payload = payload + data[x].toString() + "-";
+        }
+        // shoot that off to the backend.
+        let request = {"type":"file","msg":payload,"stage":"payload"};
         ws.send(JSON.stringify(request));
-        console.log(request.type + " File uploaded to server:" + request.msg);
-
+        console.log("Upload Complete");
     }
     reader.readAsArrayBuffer(file);
     document.getElementById("jpg").value = "";
