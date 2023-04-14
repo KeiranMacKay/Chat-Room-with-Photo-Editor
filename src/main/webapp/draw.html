@@ -7,30 +7,48 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body style="background-color:grey;">
+<body style="background-color:gray;">
 
 <script src="js/userImageDrawingProgram.js"></script>
 
+<!-- Header -->
 <div class="header">
-    <h1>Chat Server
+    <h1 class="h1">Chat Server
         <a href="about.html" class="right">About</a>
         <a href="draw.html" class="right">Draw</a>
         <a href="index.html" class="right">Home</a>
     </h1>
 </div>
 
-<h1>Image Editor Program</h1>
-    <p>Select an image file and a drawing color below:</p>
-    <form>
-        <label for="imageFile">Image File:</label>
-        <input type="file" id="imageFile"><br><br>
-        <label for="colorPicker">Drawing Color:</label>
-        <input type="color" id="colorPicker"><br><br>
-        <input type="button" value="Clear" onclick="clearCanvas();">
-        <input type="button" value="Save" onclick="saveButtonHandler();">
-    </form>
-    <canvas id="canvas"></canvas>
+<!-- First segment -->
+<div class="about">
+    <h1 style="color: white">Image Editor Program</h1>
+    <p class="p">Select an image file and a drawing color below:</p>
+</div>
 
+<br>
+<!-- Image file -->
+<form class="form_draw_1">
+    <p class="p">Image File:</p>
+    <input type="file" id="imageFile" class="choose_file_button">
+</form>
+
+<br>
+<!-- Drawing Color -->
+<form class="form_draw_2">
+    <p class="p">Drawing Color:</p>
+    <input type="color" id="colorPicker">
+</form>
+<br>
+
+<!-- Canvas -->
+<canvas id="canvas"></canvas>
+
+<!-- Canvas Buttons -->
+<div style="margin-left: 585px">
+    <input type="button" value="Clear" onclick="clearCanvas();">
+    <input type="button" value="Save" onclick="saveButtonHandler();">
+</div>
 
 </body>
 </html>
