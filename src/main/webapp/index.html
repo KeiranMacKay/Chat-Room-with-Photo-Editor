@@ -30,6 +30,7 @@
 <div class="header">
     <h1>Chat Server
         <a href="about.html" class="right">About</a>
+        <a href="index.html" class="right">Draw</a>
         <a href="index.html" class="right">Home</a>
     </h1>
 </div>
@@ -58,10 +59,14 @@
 <div id="chat" class="main">
     <!-- Chat box -->
     <textarea title="Chat Log" id="log" readonly class="chat"></textarea>
-    <!-- Chat input -->
-    <input title="Chat Input" id="input" type="text" class="input"/>
-    <!-- Send chat button -->
-    <button id="submit" class="button_3">Send</button>
+    <form>
+        <!-- image upload -->
+        <button id="image_upload" class="button_5"> + </button>
+        <!-- Chat input -->
+        <input title="Chat Input" id="input" placeholder="Message chat room" type="text" class="input"/>
+        <!-- Send chat button -->
+        <button id="submit" class="button_3"> > </button>
+    </form>
 </div>
 
 
