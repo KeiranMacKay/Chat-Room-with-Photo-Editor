@@ -7,7 +7,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @ServerEndpoint(value="/ws/{roomID}") // websocket endpoint
 public class ChatServer {
@@ -44,12 +46,29 @@ public class ChatServer {
         JSONObject jsonmsg = new JSONObject(comm); // grab string from message json
         String type = jsonmsg.getString("type");
         String message = jsonmsg.getString("msg");
-
+        // look for file requests..:
+        if(type.equals("file")){
+            session.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Server ): Image submitted.\"}");
+        }
         // look for refresh type messages..:
-        if(type.equals("refresh")){
+        else if(type.equals("refresh")){
             if(message.equals("rooms")) {
+                String packer = "";
+                Set<String> filter = new HashSet<String>();
+                // don't want to display duplicate rooms..:
+                for(String val : roomList.values()){
+                    filter.add(val);
+                }
+                // whack them in a string..:
+                for(String val : filter){
+                    packer += val + "*";
+                }
+                session.getBasicRemote().sendText("{\"type\": \"roomList\", \"message\":\"" + packer + "" + "\"}");
+                /*
                 String roomListJson = hashMapToJson(roomList);
-                session.getBasicRemote().sendText("{\"type\": \"roomList\", \"message\": }" + roomListJson);
+                session.getBasicRemote().sendText("{\"type\": \"roomList\", \"message\": \"" + roomListJson + "\"}");
+
+                 */
             }
         }
         // look for chat type messages..:
