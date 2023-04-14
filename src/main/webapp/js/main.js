@@ -88,7 +88,6 @@ document.getElementById("jpg").addEventListener('change',function(event) {
         let height = this.height;
         // id for later...
         let id = makeRandomID();
-        console.log(width+ ":" + height);
         // shoot those to the front end aswell as the ID.
         let request = {"type":"file","msg":width+":"+height+":"+id,"stage":"begin"};
         ws.send(JSON.stringify(request));
@@ -127,12 +126,9 @@ function makeRandomID(){
     }
 
     // Get the room codes to show up on the list on the webpage
-    /*
-    causes duplicate entries...
     var node = document.createElement('li');
     node.appendChild(document.createTextNode(ID));
     document.querySelector('ul').appendChild(node);
-     */
 
     return ID;
 }

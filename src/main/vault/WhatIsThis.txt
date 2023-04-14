@@ -1,2 +1,4 @@
 Q: What is this file for?
 A: It stores all the JPEGs handled by the server.
+Q: Why is there a jpeg called "test"?
+A: Take a guess. It's for testing.

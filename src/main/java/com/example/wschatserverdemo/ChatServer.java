@@ -5,9 +5,18 @@ import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 import org.json.JSONObject;
 
+import javax.imageio.ImageIO;
+import java.awt.image.*;
+import java.io.File;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import javax.imageio.ImageWriter;
+import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
+import javax.imageio.stream.ImageOutputStream;
+
 
 @ServerEndpoint(value="/ws/{roomID}") // websocket endpoint
 public class ChatServer {
@@ -50,25 +59,32 @@ public class ChatServer {
         System.out.println(type + " " + message);
         // look for file requests..:
         if(type.equals("file")){
+            // data members
+            String name = "";
+            int imgwidth = 0;
+            int imheight = 0;
+            List<Integer> vals = new ArrayList<Integer>();
+
             String stage = jsonmsg.getString("stage");
             if(stage.equals("begin")){
                 // This triggers at the start of an upload and defines the image size.
                 String[] conv = message.split(":");
-                int imgwidth = Integer.parseInt(conv[0]);
-                int imheight = Integer.parseInt(conv[1]);
-                String name = conv[2];
-                session.getBasicRemote().sendText("{\"type\": \"chat\", \"message\": \"" + imheight + "::" + imgwidth + "\"}");
+                imgwidth = Integer.parseInt(conv[0]);
+                imheight = Integer.parseInt(conv[1]);
+                name = conv[2];
             }else{
                 // block that recieves data from upload.
                 // data is recieved in the form <int>*<int>*<int> as a string.
 
                 // so, to get a String[] of stuff we need to cast to ints..:
                 String[] convert = message.split("-");
-                List<Integer> convInt = new ArrayList<Integer>();
                 for(String n : convert){
-                    convInt.add(Integer.parseInt(n.trim()));
+                    vals.add(Integer.parseInt(n.trim()));
                 }
-                // we now have an array of ints that we need to convert into an image file.
+                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\"" + vals.get(0) + "" + "\"}");
+                int[] valsf = vals.stream().mapToInt(Integer::intValue).toArray();
+                // construct our jpeg...
+                convert(valsf,imgwidth,imheight,name);
             }
         }
         // look for refresh type messages..:
@@ -109,6 +125,17 @@ public class ChatServer {
                     }
                 }
             }
+        }
+    }
+    public static void convert(int[] imageData, int width, int height, String fileName) {
+        BufferedImage bImage = null;
+        try{
+            File init = new File("src/main/vault/test.jpg");
+            bImage = ImageIO.read(init);
+
+            ImageIO.write(bImage, "jpg", new File("src/main/vault/test2.png"));
+        }catch(IOException e){
+            e.printStackTrace();
         }
     }
 }
