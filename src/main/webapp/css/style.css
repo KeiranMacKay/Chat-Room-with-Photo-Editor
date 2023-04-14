@@ -226,3 +226,26 @@ canvas{
     width: 50%;
     margin-left: 26%;
 }
+
+
+.room_button_1 {
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 0;
+    color: black;
+    padding: 2px 5px 2px 5px;
+    border-radius: 4px;
+}
+
+.room_button_2 {
+    cursor: pointer;
+    text-align: center;
+    border: 0;
+    background-color: grey;
+    color: black;
+    margin-bottom: 10px;
+}
+
+
+.room_button_2:hover {color: white}
