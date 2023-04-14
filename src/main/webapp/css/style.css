@@ -160,7 +160,7 @@ a.right {
 /* Form for Image File: "*/
 .form_draw_1{
     text-align: center;
-    margin-left: 470px;
+    margin-left: 42%;
     width: 100%;
     display: flex;
     padding: 0;
@@ -170,7 +170,7 @@ a.right {
 /* Form for Drawing Color: "*/
 .form_draw_2{
     text-align: center;
-    margin-left: 535px;
+    margin-left: 45.5%;
     width: 22.5%;
     display: flex;
     padding: 0;
@@ -224,5 +224,5 @@ canvas{
     color: white;
     background-color: white;
     width: 50%;
-    margin-left: 320px;
+    margin-left: 26%;
 }
