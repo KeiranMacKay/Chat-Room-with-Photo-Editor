@@ -114,11 +114,32 @@ a.right {
     color: white;
 }
 
+/* Image Upload Button */
+label {
+    float: left;
+    background-color: #111111;
+    color: grey;
+    padding: 10px 20px;
+    font-family: sans-serif;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    border: 1px solid white;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-right: 0;
+    margin-right: 0;
+    margin-left: 15.6%;
+}
+
+label:hover{color: white}
+
 /* Chat input */
 .input {
+    float: left;
     display: block;
-    width: 100%;
-    border: 2px solid black;
+    width: 61.89%;
+    border: 1px solid white;
     resize: none;
     padding: 12px 10px;
     border-right: 0;
@@ -133,14 +154,14 @@ a.right {
 /*Send chat button*/
 .button_3{
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 20px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
     color: grey;
     background-color: #111111;
-    border: 2px solid black;
+    border: 1px solid white;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     border-left: 0;
@@ -177,7 +198,7 @@ a.right {
     border-radius: 4px;
 }
 
-/* Image upload button */
+/* Image upload button
 .button_5 {
     display: inline-block;
     padding: 12px 15px;
@@ -192,12 +213,13 @@ a.right {
     border-bottom-left-radius: 4px;
     border-right: 0;
     margin-right: 0;
-    /*outline: none; */
 }
+*/
 
+/* for button hovers */
 .button_3:hover{color: white}
-.button_5:hover{color: white}
 
+/* for text on draw page */
 .p {
     text-align: center;
     margin-top: 0;
@@ -220,6 +242,7 @@ a.right {
     margin-left: 0;
 }
 
+/* For canvas */
 canvas{
     color: white;
     background-color: white;
@@ -227,7 +250,7 @@ canvas{
     margin-left: 26%;
 }
 
-
+/* Button for joining rooms off room list */
 .room_button_1 {
     cursor: pointer;
     text-align: center;
@@ -238,6 +261,7 @@ canvas{
     border-radius: 4px;
 }
 
+/* same thing but for when the button is the actual room id itself */
 .room_button_2 {
     cursor: pointer;
     text-align: center;
@@ -247,5 +271,5 @@ canvas{
     margin-bottom: 10px;
 }
 
-
 .room_button_2:hover {color: white}
+
