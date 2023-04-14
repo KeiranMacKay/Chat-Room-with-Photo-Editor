@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chat Server - About</title>
+    <title>Chat Server - Image Editor</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body style="background-color:grey;">
 
-<script src="js/main.js"></script>
+<script src="js/userImageDrawingProgram.js"></script>
 
 <div class="header">
     <h1>Chat Server
@@ -18,6 +18,18 @@
         <a href="index.html" class="right">Home</a>
     </h1>
 </div>
+
+<h1>Image Editor Program</h1>
+    <p>Select an image file and a drawing color below:</p>
+    <form>
+        <label for="imageFile">Image File:</label>
+        <input type="file" id="imageFile"><br><br>
+        <label for="colorPicker">Drawing Color:</label>
+        <input type="color" id="colorPicker"><br><br>
+        <input type="button" value="Clear" onclick="clearCanvas();">
+        <input type="button" value="Save" onclick="saveButtonHandler();">
+    </form>
+    <canvas id="canvas"></canvas>
 
 
 </body>

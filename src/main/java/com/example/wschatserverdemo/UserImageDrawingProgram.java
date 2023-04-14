@@ -1,3 +1,5 @@
+package com.example.wschatserverdemo;
+
 //Imports
 import java.awt.*;
 import java.awt.event.*;

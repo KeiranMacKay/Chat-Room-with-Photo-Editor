@@ -1,28 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Image Drawing Program</title>
-    <style>
-        #canvas {
-            border: 1px solid black;
-        }
-    </style>
-</head>
-<body>
-    <h1>Image Editor Program</h1>
-    <p>Select an image file and a drawing color below:</p>
-    <form>
-        <label for="imageFile">Image File:</label>
-        <input type="file" id="imageFile"><br><br>
-        <label for="colorPicker">Drawing Color:</label>
-        <input type="color" id="colorPicker"><br><br>
-        <input type="button" value="Clear" onclick="clearCanvas();">
-        <input type="button" value="Save" onclick="saveButtonHandler();">
-    </form>
-    <canvas id="canvas"></canvas>
-    <script>
-
 
         //Get canvas element and context
         const canvas = document.getElementById('canvas');
@@ -110,6 +85,3 @@
         //Set up event listener for user drawing
         canvas.addEventListener('mousedown', mouseDown);
 
-    </script>
-</body>
-</html>
