@@ -182,7 +182,7 @@ label:hover{color: white}
 .form_draw_1{
     text-align: center;
     margin-left: 42%;
-    width: 100%;
+    width: 50%;
     display: flex;
     padding: 0;
     border-radius: 4px;
@@ -240,6 +240,7 @@ label:hover{color: white}
     border-radius: 4px;
     border-left: 0;
     margin-left: 0;
+
 }
 
 /* For canvas */
