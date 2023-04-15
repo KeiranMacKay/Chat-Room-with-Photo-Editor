@@ -1,7 +1,3 @@
-.image {
-    margin-left: 90%;
-}
-
 html {
     color: #222;
     font-size: 1em;
@@ -255,14 +251,6 @@ label:hover{color: white}
     background-color: white;
     width: 50%;
     margin-left: 26%;
-}
-
-.canvas_image {
-    alignment: center;
-    align-content: center;
-    align-items: center;
-    text-align: center;
-    margin-left: 100%;
 }
 
 /* Button for joining rooms off room list */
