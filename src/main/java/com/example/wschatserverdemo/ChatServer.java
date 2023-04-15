@@ -47,6 +47,8 @@ public class ChatServer {
     }
     @OnMessage
     public void handleMessage(String message, Session session) throws IOException, EncodeException {
+        // this seems a little strange, but at some point I may have to handle non-JSON messages,
+        // so i've cracked the code for JSONs into its own function.
         handleJson(message,session);
     }
     private void handleJson(String comm, Session session) throws IOException, EncodeException{
@@ -57,6 +59,7 @@ public class ChatServer {
         String type = jsonmsg.getString("type");
         String message = jsonmsg.getString("msg");
         System.out.println(type + " " + message);
+
         // look for file requests..:
         if(type.equals("file")){
             // data members
@@ -67,7 +70,7 @@ public class ChatServer {
 
             String stage = jsonmsg.getString("stage");
             if(stage.equals("begin")){
-                // This triggers at the start of an upload and defines the image size.
+                // This triggers at the start of an upload and defines the image size and name.
                 String[] conv = message.split(":");
                 imgwidth = Integer.parseInt(conv[0]);
                 imheight = Integer.parseInt(conv[1]);
@@ -81,10 +84,17 @@ public class ChatServer {
                 for(String n : convert){
                     vals.add(Integer.parseInt(n.trim()));
                 }
-                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\"" + vals.get(0) + "" + "\"}");
+                // cast List<Int> to int[]..:
                 int[] valsf = vals.stream().mapToInt(Integer::intValue).toArray();
+                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\"" + vals.get(0) + "" + "\"}");
                 // construct our jpeg...
-                convert(valsf,imgwidth,imheight,name);
+                BufferedImage bImage = null;
+                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\"" + "Attempted image" + "" + "\"}");
+                int width = 100;
+                int height = 100;
+                BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+                File output = new File("src/main/vault/test.jpg");
+                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\""+"Creating image..: " + image.toString() + "" + "\"}");
             }
         }
         // look for refresh type messages..:
@@ -125,17 +135,6 @@ public class ChatServer {
                     }
                 }
             }
-        }
-    }
-    public static void convert(int[] imageData, int width, int height, String fileName) {
-        BufferedImage bImage = null;
-        try{
-            File init = new File("src/main/vault/test.jpg");
-            bImage = ImageIO.read(init);
-
-            ImageIO.write(bImage, "jpg", new File("src/main/vault/test2.png"));
-        }catch(IOException e){
-            e.printStackTrace();
         }
     }
 }
