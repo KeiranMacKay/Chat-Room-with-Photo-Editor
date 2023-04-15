@@ -126,9 +126,11 @@ function makeRandomID(){
     }
 
     // Get the room codes to show up on the list on the webpage
+    /*
     var node = document.createElement('li');
     node.appendChild(document.createTextNode(ID));
     document.querySelector('ul').appendChild(node);
+
 
     // create button for room codes
     let room_button = document.createElement('button');
@@ -138,18 +140,28 @@ function makeRandomID(){
     room_button.onclick = function(){
         enterRoom(ID);
     };
+
     //append button to list
     document.querySelector('ul').appendChild(room_button);
-
+    */
 
 
     // This version is for if u want the room codes to be the buttons themselves
-    /*
     var node = document.createElement("button");
+    var node_2 = document.createElement("br");
     node.appendChild(document.createTextNode(ID));
+
+    // create button for room codes
+    node.id = "join_room";
     node.className = "room_button_2";
+    node.onclick = function(){
+        enterRoom(ID);
+    };
+
+    //append button to list
     document.querySelector('ul').appendChild(node);
-    */
+    document.querySelector('ul').appendChild(node_2);
+
 
    return ID;
 }
