@@ -5,9 +5,13 @@ Keiran Mackay <br>
 Faraj Mustafa <br>
 
 ### General Information
-This project implements a chat room website with a built in image editor. Upon loading the website, you have 3 tabs you can go to: Chat, Draw, About. <br> <br> Chat is the chat room where you are prompted to enter a username. After which you may chat freely in the current chatroom, create a new chatroom, or refresh the current ones in case of any issues. <br> <br> Draw takes you to an image editor. The user is prompted to select an image from their devices local storage, after which they may choose a colour of their choice to draw on the image, and are able to save it to their device afterwords. <br> <br> Finally About displays the infromation of the creators of the website <br> Once that's all done, you may freely chat with whoever else is in your room. 
+This project implements a chat room website with a built in image editor. Upon loading the website, you have 3 tabs you can go to: Chat, Draw, About. <br> <br> Chat is the chat room where you are prompted to enter a username. After which you may chat freely in the current chatroom, create a new chatroom, or refresh the current ones in case of any issues. <br> <br> Draw takes you to an image editor. The user is prompted to select an image from their devices local storage, after which they may choose a colour of their choice to draw on the image, and are able to save it to their device afterwords. <br> <br> Finally About displays the infromation of the creators of the website <br>
 
 ### Improvements
+Improvments made to this project includes the ability to use a refresh button to refresh the rooms in case of any issues. We can also have multiple chat rooms open in the same tab rather then having to have multiple tabs open for multiple rooms. We have added an in house photo editor that allows the user to input a photo and draw on it, with a clear button to remove changes and a save button to save the changes to a new file.
+
+![alt text](https://cdn.discordapp.com/attachments/220395098272170004/1096630874306531329/image.png)
+![alt text](https://cdn.discordapp.com/attachments/220395098272170004/1096631006188028065/image.png)
 
 ### How to Run
 To run this project, you will need to access a server that is running the project. To do this, you will either require a <br> local test-type server, such as Glassfish, which this project was developed on, or any of the variety of other <br> equipment you may choose to run a server. For the purposes of brevity, 
@@ -20,5 +24,8 @@ this will be your username for the duration of your time in the room, and, when 
 Similarly, when you leave, all the other users will also be notified. That's it! You now have the project fully running.
 
 ### Other Resources
-
-
+Libraries used for this assignment include:
+org.json.JSONObject<br> 
+java.IO.IOException<br> 
+java.util.Hashmap<br> 
+javs.util.Map<br> 
