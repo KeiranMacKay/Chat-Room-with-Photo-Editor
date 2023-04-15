@@ -9,6 +9,7 @@ function setImDim() {
     canvas.height = image.height;
     canvas.style.width = image.width + "px";
     canvas.style.height = image.height + "px";
+    canvas.className = "canvas"
 
     const offsetX = (canvas.width - image.width) / 2;
     const offsetY = (canvas.height - image.height) / 2;

@@ -135,6 +135,10 @@ function makeRandomID(){
     room_button.className = "room_button_1";
     room_button.id = "join_room";
     room_button.append("Join");
+    room_button.onclick = function(){
+        enterRoom(ID);
+    };
+    //append button to list
     document.querySelector('ul').appendChild(room_button);
 
 

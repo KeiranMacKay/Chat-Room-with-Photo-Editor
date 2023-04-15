@@ -169,6 +169,7 @@ label:hover{color: white}
     /*outline: none; */
 }
 
+/*
 .form{
     display: flex;
     border: 1px solid white;
@@ -177,6 +178,7 @@ label:hover{color: white}
     padding: 0;
     border-radius: 4px;
 }
+ */
 
 /* Form for Image File: "*/
 .form_draw_1{
