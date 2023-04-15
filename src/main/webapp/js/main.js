@@ -18,6 +18,7 @@ function enterRoom(code) {
                 item.parentNode.removeChild(item);
             });
             let split = message.message.split("*");
+            removeAll();
             for(x in split){
                 var node = document.createElement("button");
                 var node_2 = document.createElement("br");
@@ -176,4 +177,9 @@ function makeRandomID(){
 
 
    return ID;
+}
+
+// removes all elements in the list
+function removeAll(){
+    document.getElementById("roomList").innerHTML = "";
 }
