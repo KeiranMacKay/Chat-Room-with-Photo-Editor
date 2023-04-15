@@ -93,8 +93,15 @@ public class ChatServer {
                 int width = 100;
                 int height = 100;
                 BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
-                File output = new File("src/main/vault/test.jpg");
+                File output = new File("test2.jpg");
                 session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\""+"Creating image..: " + image.toString() + "" + "\"}");
+                try{
+                    ImageIO.write(image,"JPEG",output);
+                    session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\""+"Creating image..: " + "SUCCESS" + "" + "\"}");
+                }catch(Exception e){
+                    e.printStackTrace();
+                    session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\""+"Creating image..: " + e.toString() + "" + "\"}");
+                }
             }
         }
         // look for refresh type messages..:
