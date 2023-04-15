@@ -23,6 +23,13 @@ Each time you enter a room code in a new tab, you will be prompted by the system
 this will be your username for the duration of your time in the room, and, when you enter, all will be notified of <br> your grand entrance, assuming they where aleady in the channel.
 Similarly, when you leave, all the other users will also be notified. That's it! You now have the project fully running.
 
+### Note on File Upload
+Due to time crunch, we where not able to complete file uploads. That isn't to say they aren't functional: from a websocket perspective, <br>
+they are complete. However, the format of our messages, JSON, does not lend itself easily to payloads that are formatted. <br>
+To get around this, we have transmitted an image byte[] as a string, which we must then parse in the backend. This parsing proved more challenging than expected. <br>
+If you inspect the code, you will find that the server correctly recieves all the data to construct a JPEG and save it to file, but the code to actually do so is absent.<br>
+The idea with file upload was to make it so that you can share edited jpegs with other people in your chatroom - if we could get the files uploaded, <br>
+a simple fetch was all that was between us and accomplishing that. However, technical problems and time crunch have come into play, so that function has been omitted, for now. <br>
 ### Other Resources
 Libraries used for this assignment include:
 org.json.JSONObject<br> 

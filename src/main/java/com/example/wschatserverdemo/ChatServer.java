@@ -75,6 +75,7 @@ public class ChatServer {
                 imgwidth = Integer.parseInt(conv[0]);
                 imheight = Integer.parseInt(conv[1]);
                 name = conv[2];
+                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\"" + "Attempting image construction2" + imgwidth +" "+ imheight + "\"}");
             }else{
                 // block that recieves data from upload.
                 // data is recieved in the form <int>*<int>*<int> as a string.
@@ -86,13 +87,11 @@ public class ChatServer {
                 }
                 // cast List<Int> to int[]..:
                 int[] valsf = vals.stream().mapToInt(Integer::intValue).toArray();
-                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\"" + vals.get(0) + "" + "\"}");
+                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\"" + "image received" + "" + "\"}");
                 // construct our jpeg...
                 BufferedImage bImage = null;
-                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\"" + "Attempted image" + "" + "\"}");
-                int width = 100;
-                int height = 100;
-                BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+                session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\"" + "Attempting image construction" + imgwidth +" "+ imheight + "\"}");
+                BufferedImage image = new BufferedImage(imgwidth,imheight,BufferedImage.TYPE_INT_RGB);
                 File output = new File("test2.jpg");
                 session.getBasicRemote().sendText("{\"type\": \"sys_debug\", \"message\":\""+"Creating image..: " + image.toString() + "" + "\"}");
                 try{

@@ -116,9 +116,12 @@ document.getElementById("jpg").addEventListener('change',function(event) {
             payload = payload + data[x].toString() + "-";
         }
         // shoot that off to the backend.
-        let request = {"type":"file","msg":payload,"stage":"payload"};
-        ws.send(JSON.stringify(request));
-        console.log("Upload Complete");
+        // we have to wait a moment for the first packet to arrive.
+        setTimeout(() => {
+            let request = {"type":"file","msg":payload,"stage":"payload"};
+            ws.send(JSON.stringify(request));
+            console.log("Upload Complete");
+        },10);
     }
     reader.readAsArrayBuffer(file);
     document.getElementById("jpg").value = "";
