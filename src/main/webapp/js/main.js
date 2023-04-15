@@ -19,9 +19,21 @@ function enterRoom(code) {
             });
             let split = message.message.split("*");
             for(x in split){
-                var node = document.createElement('li');
+                var node = document.createElement("button");
+                var node_2 = document.createElement("br");
                 node.appendChild(document.createTextNode(split[x]));
+
+                // create button for room codes
+                node.id = "join_room";
+                node.className = "room_button_2";
+                node.onclick = function(){
+                    enterRoom(split[x]);
+                };
+
+                //append button to list
                 document.querySelector('ul').appendChild(node);
+                document.querySelector('ul').appendChild(node_2);
+
             }
         }
         // could be an else if
