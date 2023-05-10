@@ -7,8 +7,6 @@ Faraj Mustafa <br>
 ### General Information
 This project implements a chat room website with a built in image editor. Upon loading the website, you have 3 tabs you can go to: Chat, Draw, About. <br> <br> Chat is the chat room where you are prompted to enter a username. After which you may chat freely in the current chatroom, create a new chatroom, or refresh the current ones in case of any issues. <br> <br> Draw takes you to an image editor. The user is prompted to select an image from their devices local storage, after which they may choose a colour of their choice to draw on the image, and are able to save it to their device afterwords. <br> <br> Finally About displays the infromation of the creators of the website <br>
 
-### Improvements
-Improvments made to this project includes the ability to use a refresh button to refresh the rooms in case of any issues. We can also have multiple chat rooms open in the same tab rather then having to have multiple tabs open for multiple rooms. We have added an in house photo editor that allows the user to input a photo and draw on it, with a clear button to remove changes and a save button to save the changes to a new file.
 
 ![alt text](https://cdn.discordapp.com/attachments/220395098272170004/1096630874306531329/image.png)
 ![alt text](https://cdn.discordapp.com/attachments/220395098272170004/1096631006188028065/image.png)
